@@ -11,7 +11,7 @@ const { storage } = require('./config/multer');
 
 const routes = express.Router();
 
-const upload = multer(storage);
+const upload = multer({storage});
 
 routes.get('/', (request, response) => {
     return response.json("Server is UP!")

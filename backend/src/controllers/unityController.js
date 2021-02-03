@@ -55,9 +55,7 @@ module.exports = {
 
     async create(request, response) {
         const { name, content, module_id } = request.body;
-        const hash = crypto.randomBytes(6).toString('hex');
-        const fileName = `${hash}-${request.file.originalname}`;
-        const image_url = `http://localhost:3333/uploads/${fileName}`;
+        const image_url = `http://localhost:3333/uploads/${request.file.filename}`;
 
         await connection('unity').insert({
             image_url,
