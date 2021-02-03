@@ -1,8 +1,9 @@
-const knex = require('knex');
-const connection = require('../connection')
-
-export async function seed(connection){
-    await connection('items').insert([
-      { user: 'admin', password: 'admin' },
-    ])
-  }
+exports.seed = function(knex) {
+  // Deletes ALL existing entries
+  return knex('login').then(function () {
+      // Inserts seed entries
+      return knex('login').insert([
+        { user: 'admin', password: 'admin' }
+      ]);
+    });
+};
