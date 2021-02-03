@@ -2,6 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('unity', function (table) {
         table.increments();
+        table.string('image_name').notNullable();
         table.string('image_url').notNullable();
         table.string('name').notNullable();
         table.string('content').notNullable();

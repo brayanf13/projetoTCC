@@ -19,51 +19,21 @@ module.exports = {
         }
     },
 
-
-
-
-    // async create(request, response) {
-    //     const { name, content, module_id } = request.body;
-
-    //     // const image_url = "teste"
-
-    //     const aux = 
-
-    //     await connection('unity').insert({
-    //         image_url,
-    //         name,
-    //         content,
-    //         module_id
-    //     })
-
-    //     return response.json({ name });
-    // },
-
-    // routes.post("/posts", multer(multerConfig).single("file"), async (req, res) => {
-    //     const { originalname: name, size, key, location: url = "" } = req.file;
-
-    //     const post = await Post.create({
-    //       name,
-    //       size,
-    //       key,
-    //       url
-    //     });
-
-    //     return res.json(post);
-    //   });
-
-
     async create(request, response) {
         const { name, content, module_id } = request.body;
         const image_url = `http://localhost:3333/uploads/${request.file.filename}`;
+        const image_name = request.file.filename;
 
-        await connection('unity').insert({
+        const unity = {
+            image_name,
             image_url,
             name,
             content,
             module_id
-        });
-        return response.json(image_url);
+        }
+
+        await connection('unity').insert(unity);
+        return response.json(unity);
     },
 
 
