@@ -24,7 +24,7 @@ routes.put('/module/:id', moduleController.update);
 
 routes.get('/unity', unityController.index);
 routes.delete('/unity/:id', unityController.delete);
-routes.put('/unity/:id', unityController.update);
+routes.patch('/unity/:id', upload.single('image_url'), unityController.update);
 routes.post('/unity', upload.single('image_url'), unityController.create);
 // routes.post('/unity', unityController.create);
 

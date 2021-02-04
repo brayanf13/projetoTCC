@@ -1,5 +1,8 @@
 const connection = require('../database/connection');
 const crypto = require('crypto');
+const path = require('path');
+const uploadConfig = require('../config/multer');
+const fs = require('fs');
 
 module.exports = {
 
@@ -47,11 +50,22 @@ module.exports = {
 
     async update(request, response) {
         const { id } = request.params;
-        const { image_url, name, content, module_id } = request.body;
+        const { name, content, module_id } = request.body;
+        const image_url = `http://localhost:3333/uploads/${request.file.filename}`;
+        const image_name = request.file.filename;
+
+        const unity = await connection('unity').select('*').where('id', id).first();
+
+        const filePath = path.join(uploadConfig.directory, unity.image_name);
+        const fileExists = await fs.promises.stat(filePath);
+
+        if (fileExists) {
+            await fs.promises.unlink(filePath);
+        }
 
         await connection('unity')
             .where({ id: id })
-            .update({ image_url: image_url, name: name, content: content, module_id: module_id }, [image_url, name, content, module_id]);
+            .update({ image_name: image_name, image_url: image_url, name: name, content: content, module_id: module_id }, [image_url, name, content, module_id]);
 
         return response.status(204).send();
     }
