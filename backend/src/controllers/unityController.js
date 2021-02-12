@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const path = require('path');
 const uploadConfig = require('../config/multer');
 const fs = require('fs');
+const { select } = require('../database/connection');
 
 module.exports = {
 
@@ -22,9 +23,16 @@ module.exports = {
         }
     },
 
+    async indexOneById(request, response) {
+        const { id } = request.params;
+        const unity = await connection('unity').select('*').where('module_id', id);
+        
+        return response.json(unity);
+    },
+
     async create(request, response) {
         const { name, content, module_id } = request.body;
-        const image_url = `http://localhost:3333/uploads/${request.file.filename}`;
+        const image_url = `http://192.168.0.101:3333/uploads/${request.file.filename}`;
         const image_name = request.file.filename;
 
         const unity = {
@@ -42,8 +50,15 @@ module.exports = {
 
     async delete(request, response) {
         const { id } = request.params;
-
+        const filePath = path.join(uploadConfig.directory, unity.image_name);
+        const fileExists = await fs.promises.stat(filePath);
+        
+        const unity = await connection('unity').select('*').where('id', id).first();
         await connection('unity').where('id', id).delete();
+
+        if (fileExists) {
+            await fs.promises.unlink(filePath);
+        }
 
         return response.status(204).send();
     },
@@ -51,7 +66,7 @@ module.exports = {
     async update(request, response) {
         const { id } = request.params;
         const { name, content, module_id } = request.body;
-        const image_url = `http://localhost:3333/uploads/${request.file.filename}`;
+        const image_url = `http://192.168.0.101:3333/uploads/${request.file.filename}`;
         const image_name = request.file.filename;
 
         const unity = await connection('unity').select('*').where('id', id).first();
