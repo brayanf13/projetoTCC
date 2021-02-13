@@ -14,12 +14,72 @@ import UnityInfo from './pages/Module/UnityModule/UnityInfo';
 export default function Routes() {
     return (
         <NavigationContainer>
-            <AppStack.Navigator>
-                <AppStack.Screen name="Menu Inicial" component={Presentation} />
-                <AppStack.Screen name="Informação" component={Information} />
-                <AppStack.Screen name="Módulos" component={Module} />
-                <AppStack.Screen name="Unidades" component={UnityModule} />
-                <AppStack.Screen name="Informação da Unidade" component={UnityInfo} />
+            <AppStack.Navigator >
+                <AppStack.Screen
+                    options={{
+                        title: 'Página inicial',
+                        headerStyle: {
+                            backgroundColor: '#4ABDAC',
+                        },
+                        headerTintColor: '#000',
+                        headerTitleStyle: {
+                            // fontWeight: 'bold',
+                        },
+                    }}
+                    name="Menu Inicial" component={Presentation}
+                />
+                <AppStack.Screen
+                    options={{
+                        title: '',
+                        headerStyle: {
+                            backgroundColor: '#4ABDAC',
+                        },
+                        headerTintColor: '#000',
+                        headerTitleStyle: {
+                            // fontWeight: 'bold',
+                        },
+                    }}
+                    name="Informação" component={Information}
+                />
+                <AppStack.Screen
+                    options={{
+                        title: 'Módulos',
+                        headerStyle: {
+                            backgroundColor: '#4ABDAC',
+                        },
+                        headerTintColor: '#000',
+                        headerTitleStyle: {
+                            // fontWeight: 'bold',
+                        },
+                    }}
+                    name="Módulos" component={Module}
+                />
+                <AppStack.Screen
+                    options={{
+                        title: 'Unidades',
+                        headerStyle: {
+                            backgroundColor: '#4ABDAC',
+                        },
+                        headerTintColor: '#000',
+                        headerTitleStyle: {
+                            // fontWeight: 'bold',
+                        },
+                    }}
+                    name="Unidades" component={UnityModule}
+                />
+                <AppStack.Screen
+                    options={{
+                        title: '',
+                        headerStyle: {
+                            backgroundColor: '#4ABDAC',
+                        },
+                        headerTintColor: '#000',
+                        headerTitleStyle: {
+                            // fontWeight: 'bold',
+                        },
+                    }}
+                    name="Informação da Unidade" component={UnityInfo}
+                />
             </AppStack.Navigator>
         </NavigationContainer>
     );
