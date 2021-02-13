@@ -8,7 +8,7 @@ module.exports = {
             
             const search = String(request.query.search);
     
-            const filteredModule = search ? module.filter(module => module.name.includes(search)) : module;
+            const filteredModule = search ? module.filter(module => module.name.toLowerCase().includes(search.toLowerCase())) : module;
             // console.log(request.query.search ? 'foi' : 'não foi')
             return response.json(filteredModule);
         } else {

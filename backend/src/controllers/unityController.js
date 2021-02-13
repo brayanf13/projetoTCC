@@ -27,7 +27,17 @@ module.exports = {
         const { id } = request.params;
         const unity = await connection('unity').select('*').where('module_id', id);
         
-        return response.json(unity);
+        if (request.query.search) {
+
+            const search = String(request.query.search);
+
+            const filteredModule = search ? unity.filter(unity => unity.name.toLowerCase().includes(search.toLowerCase())) : unity;
+            // console.log(request.query.search ? 'foi' : 'não foi')
+            return response.json(filteredModule);
+        } else {
+            // console.log(request.query.search ? 'foi' : 'não foi')
+            return response.json(unity);
+        }
     },
 
     async create(request, response) {
