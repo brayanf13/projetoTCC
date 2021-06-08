@@ -6,7 +6,7 @@ import styles from './styles';
 export default function Information() {
     const texto = 
     `
-    Este aplicativo é o resultado de um projeto desenvolvido durante o trabalho de conclusão de curso do aluno BRAYAN ALVES MARTINS FERREIRA, ORIENTADO PELA DR. ZENAIDE CARVALHO DA SILVA.
+    Este aplicativo é o resultado de um projeto desenvolvido durante o trabalho de conclusão de curso do aluno BRAYAN ALVES MARTINS FERREIRA, ORIENTADO PELA Dra. ZENAIDE CARVALHO DA SILVA.
     O objetivo desse App, é proporcionar uma abordagem diferenciada para aprendizagem dos estudantes de informática, tornando possível consultas rápidas de acordo com necessidades ou questionamentos momentâneos relacionados.
     `;
     return (

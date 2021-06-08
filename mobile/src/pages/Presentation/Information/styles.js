@@ -25,6 +25,7 @@ export default StyleSheet.create({
 
     scroll: {
         marginVertical: 20,
+        borderRadius: 8,        
     },
 
     information: {

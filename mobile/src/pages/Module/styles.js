@@ -31,6 +31,7 @@ export default StyleSheet.create({
         marginTop: 32,
         height: 40,
         width: '100%',
+        paddingHorizontal: 30,
         backgroundColor: 'white',
         borderColor: 'gray',
         borderRadius: 8,
