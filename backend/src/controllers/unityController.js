@@ -68,11 +68,12 @@ module.exports = {
 
     async delete(request, response) {
         const { id } = request.params;
-        const filePath = path.join(uploadConfig.directory, unity.image_name);
-        const fileExists = await fs.promises.stat(filePath);
         
         const unity = await connection('unity').select('*').where('id', id).first();
         await connection('unity').where('id', id).delete();
+        
+        const filePath = path.join(uploadConfig.directory, unity.image_name);
+        const fileExists = await fs.promises.stat(filePath);
 
         if (fileExists) {
             await fs.promises.unlink(filePath);
