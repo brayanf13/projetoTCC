@@ -21,6 +21,15 @@ export default StyleSheet.create({
         elevation: 17,
     },
 
+    container: {
+        flex: 1,
+        // flexDirection: 'column',
+        height: '50%',
+        justifyContent: 'space-around',
+        backgroundColor: '#4ABDAC',
+        borderRadius: 8,
+    },
+
     image: {
         height: "100%",
         width: '100%',
@@ -36,8 +45,9 @@ export default StyleSheet.create({
     },
 
     scroll: {
-        flex: 1,
-        marginBottom: 20
+        // flex: 1,
+        maxHeight: '50%',
+        // marginBottom: 20
     },
 
 
